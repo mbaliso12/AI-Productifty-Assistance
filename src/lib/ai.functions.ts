@@ -1,11 +1,21 @@
 import { createServerFn } from "@tanstack/react-start";
 import { streamText } from "ai";
 import { z } from "zod";
-import { SYSTEM_PROMPTS, type ToolKind } from "./ai-prompts";
+import { LANGUAGE_INSTRUCTION, SYSTEM_PROMPTS, type ToolKind } from "./ai-prompts";
 
 const Input = z.object({
-  kind: z.enum(["email", "meeting", "planner", "research"]),
-  prompt: z.string().min(1).max(20000),
+  kind: z.enum([
+    "email",
+    "meeting",
+    "planner",
+    "research",
+    "document",
+    "career",
+    "motivation",
+    "rewrite",
+  ]),
+  prompt: z.string().min(1).max(40000),
+  languageLabel: z.string().max(40).optional(),
 });
 
 export const generateAiContent = createServerFn({ method: "POST" })
@@ -20,7 +30,9 @@ export const generateAiContent = createServerFn({ method: "POST" })
     try {
       const result = streamText({
         model: gateway(CHAT_MODEL),
-        system: SYSTEM_PROMPTS[data.kind as ToolKind],
+        system:
+          SYSTEM_PROMPTS[data.kind as ToolKind] +
+          LANGUAGE_INSTRUCTION(data.languageLabel ?? "English"),
         prompt: data.prompt,
       });
       return { text: await result.text };
