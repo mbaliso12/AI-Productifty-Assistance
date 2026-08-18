@@ -70,7 +70,7 @@ export function AiOutputCard({
             className="min-h-[320px] resize-y font-mono text-sm"
           />
         ) : (
-          <article className="prose prose-sm max-w-none text-sm leading-relaxed prose-headings:text-base prose-headings:font-semibold prose-strong:text-foreground dark:prose-invert">
+          <article className="markdown-body max-w-none">
             <ReactMarkdown>{value}</ReactMarkdown>
           </article>
         )}

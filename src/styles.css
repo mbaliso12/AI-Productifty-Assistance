@@ -188,3 +188,65 @@
 @utility transition-smooth {
   transition: all var(--transition-smooth);
 }
+
+@utility markdown-body {
+  font-size: 0.875rem;
+  line-height: 1.7;
+
+  & h1,
+  & h2,
+  & h3 {
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-top: 1.25em;
+    margin-bottom: 0.5em;
+    font-size: 1rem;
+  }
+
+  & h1:first-child,
+  & h2:first-child,
+  & h3:first-child {
+    margin-top: 0;
+  }
+
+  & p {
+    margin-bottom: 0.85em;
+  }
+
+  & ul,
+  & ol {
+    margin: 0 0 0.85em 1.15em;
+    list-style: disc;
+  }
+
+  & ol {
+    list-style: decimal;
+  }
+
+  & li {
+    margin-bottom: 0.3em;
+  }
+
+  & strong {
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  & a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  & code {
+    font-family: ui-monospace, monospace;
+    background: var(--color-secondary);
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+  }
+
+  & blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 0.85em;
+    color: var(--color-muted-foreground);
+  }
+}
