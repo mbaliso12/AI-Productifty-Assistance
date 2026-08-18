@@ -96,7 +96,7 @@ function ChatPage() {
                     <MessageContent
                       className={
                         message.role === "user"
-                          ? "bg-primary text-primary-foreground"
+                          ? "group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground"
                           : "bg-transparent px-0 text-foreground"
                       }
                     >
